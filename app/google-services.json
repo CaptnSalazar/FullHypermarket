@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "41912750963",
+    "firebase_url": "https://senterprisr-16fbb.firebaseio.com",
+    "project_id": "senterprisr-16fbb",
+    "storage_bucket": "senterprisr-16fbb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41912750963:android:6c9457e3cb9f699b28ab06",
+        "android_client_info": {
+          "package_name": "com.example.kiit.senterprisr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "41912750963-a55e9e2cciikond8iulemmu46effts66.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kiit.senterprisr",
+            "certificate_hash": "f54558d9cffde658926f4d76ff5d1327df583cca"
+          }
+        },
+        {
+          "client_id": "41912750963-kia4css7etrhlmffak3s7mdbfi2hfnm2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKjhXYhpZNFcKhlGYNaOG6u3n0nlhZE3Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41912750963-kia4css7etrhlmffak3s7mdbfi2hfnm2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
