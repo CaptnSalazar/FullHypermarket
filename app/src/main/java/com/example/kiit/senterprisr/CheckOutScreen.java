@@ -20,11 +20,18 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.kiit.senterprisr.Prevalent.Prevalent;
+import com.example.kiit.senterprisr.ViewHolder.CartViewHolder;
+import com.example.kiit.senterprisr.model.Cart;
+import com.example.kiit.senterprisr.model.Products;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +39,7 @@ import java.util.HashMap;
 public class CheckOutScreen extends AppCompatActivity {
 
     TextView amountEt, nameEt, upiIdEt;
-    Button send,cod;
+    Button send, cod;
     private Boolean exit = false;
     final int UPI_PAYMENT = 0;
 
@@ -42,45 +49,43 @@ public class CheckOutScreen extends AppCompatActivity {
         setContentView(R.layout.activity_check_out_screen);
 
         initializeViews();
-cod.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        final DatabaseReference OrderRef= FirebaseDatabase.getInstance().
-                getReference().child("Orders")
-                .child(Prevalent.currentOnlineUsers.getPhone()).child("UserInfo");
-        HashMap<String,Object> order=new HashMap<>();
-        order.put("State","shipped");
-        OrderRef.updateChildren(order).addOnCompleteListener(new OnCompleteListener<Void>() {
+        cod.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful())
-                {
-                    Toast.makeText(CheckOutScreen.this, "Ordered placed succesfully.", Toast.LENGTH_SHORT).show();
-
-
-                }
-            }
-        });
-
-        FirebaseDatabase.getInstance().getReference().child("Cart List")
-                .child("User View")
-                .child(Prevalent.currentOnlineUsers.getPhone())
-                .removeValue()
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
+            public void onClick(View v) {
+                final DatabaseReference OrderRef = FirebaseDatabase.getInstance().
+                        getReference().child("Orders")
+                        .child(Prevalent.currentOnlineUsers.getPhone()).child("UserInfo");
+                HashMap<String, Object> order = new HashMap<>();
+                order.put("State", "shipped");
+                OrderRef.updateChildren(order).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful())
-                        {//clearing cart for confirming order
-                            Intent intent=new Intent(CheckOutScreen.this,HomeActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
-                            finish();
+                        if (task.isSuccessful()) {
+                            Toast.makeText(CheckOutScreen.this, "Ordered placed succesfully.", Toast.LENGTH_SHORT).show();
+
+
                         }
                     }
                 });
 
-    }
-});
+                FirebaseDatabase.getInstance().getReference().child("Cart List")
+                        .child("User View")
+                        .child(Prevalent.currentOnlineUsers.getPhone())
+                        .removeValue()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {//clearing cart for confirming order
+                                    Intent intent = new Intent(CheckOutScreen.this, HomeActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }
+                        });
+
+            }
+        });
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,7 +106,7 @@ cod.setOnClickListener(new View.OnClickListener() {
         nameEt = findViewById(R.id.name);
         upiIdEt = findViewById(R.id.upi_id);
 
-cod=findViewById(R.id.cod);
+        cod = findViewById(R.id.cod);
     }
 
     void payUsingUpi(String amount, String upiId, String name) {
@@ -121,10 +126,10 @@ cod=findViewById(R.id.cod);
         Intent chooser = Intent.createChooser(upiPayIntent, "Pay with");
 
         // check if intent resolves
-        if(null != chooser.resolveActivity(getPackageManager())) {
+        if (null != chooser.resolveActivity(getPackageManager())) {
             startActivityForResult(chooser, UPI_PAYMENT);
         } else {
-            Toast.makeText(CheckOutScreen.this,"No UPI app found, please install one to continue",Toast.LENGTH_SHORT).show();
+            Toast.makeText(CheckOutScreen.this, "No UPI app found, please install one to continue", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -161,23 +166,21 @@ cod=findViewById(R.id.cod);
     private void upiPaymentDataOperation(ArrayList<String> data) {
         if (isConnectionAvailable(CheckOutScreen.this)) {
             String str = data.get(0);
-            Log.d("UPIPAY", "upiPaymentDataOperation: "+str);
+            Log.d("UPIPAY", "upiPaymentDataOperation: " + str);
             String paymentCancel = "";
-            if(str == null) str = "discard";
+            if (str == null) str = "discard";
             String status = "";
             String approvalRefNo = "";
             String response[] = str.split("&");
             for (int i = 0; i < response.length; i++) {
                 String equalStr[] = response[i].split("=");
-                if(equalStr.length >= 2) {
+                if (equalStr.length >= 2) {
                     if (equalStr[0].toLowerCase().equals("Status".toLowerCase())) {
                         status = equalStr[1].toLowerCase();
-                    }
-                    else if (equalStr[0].toLowerCase().equals("ApprovalRefNo".toLowerCase()) || equalStr[0].toLowerCase().equals("txnRef".toLowerCase())) {
+                    } else if (equalStr[0].toLowerCase().equals("ApprovalRefNo".toLowerCase()) || equalStr[0].toLowerCase().equals("txnRef".toLowerCase())) {
                         approvalRefNo = equalStr[1];
                     }
-                }
-                else {
+                } else {
                     paymentCancel = "Payment cancelled by user.";
                 }
             }
@@ -185,19 +188,19 @@ cod=findViewById(R.id.cod);
             if (status.equals("success")) {
                 //Code to handle successful transaction here.
                 Toast.makeText(CheckOutScreen.this, "Transaction successful.", Toast.LENGTH_SHORT).show();
-                Log.d("UPI", "responseStr: "+approvalRefNo);
-                final DatabaseReference OrderRef= FirebaseDatabase.getInstance().
+                Log.d("UPI", "responseStr: " + approvalRefNo);
+                final DatabaseReference OrderRef = FirebaseDatabase.getInstance().
                         getReference().child("Orders")
                         .child(Prevalent.currentOnlineUsers.getPhone()).child("UserInfo");
-                HashMap<String,Object> order=new HashMap<>();
-                order.put("State","shipped and paid");
+                HashMap<String, Object> order = new HashMap<>();
+                order.put("State", "shipped and paid");
                 OrderRef.updateChildren(order).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful())
-                        {
+                        if (task.isSuccessful()) {
                             Toast.makeText(CheckOutScreen.this, "Ordered placed succesfully.", Toast.LENGTH_SHORT).show();
 
+                            getstock();
 
                         }
                     }
@@ -209,17 +212,15 @@ cod=findViewById(R.id.cod);
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful())
-                                {//clearing cart for confirming order
-                                    Intent intent=new Intent(CheckOutScreen.this,HomeActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                if (task.isSuccessful()) {//clearing cart for confirming order
+                                    Intent intent = new Intent(CheckOutScreen.this, HomeActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     finish();
                                 }
                             }
                         });
-            }
-            else if("Payment cancelled by user.".equals(paymentCancel)) {
+            } else if ("Payment cancelled by user.".equals(paymentCancel)) {
                 Toast.makeText(CheckOutScreen.this, "Payment cancelled by user.", Toast.LENGTH_SHORT).show();
 
                 final DatabaseReference OrderRef = FirebaseDatabase.getInstance().
@@ -238,8 +239,7 @@ cod=findViewById(R.id.cod);
                         }
                     }
                 });
-            }
-            else {
+            } else {
                 Toast.makeText(CheckOutScreen.this, "Transaction failed.Please try again", Toast.LENGTH_SHORT).show();
                 final DatabaseReference OrderRef = FirebaseDatabase.getInstance().
                         getReference().child("Orders")
@@ -291,6 +291,7 @@ cod=findViewById(R.id.cod);
         }
         return false;
     }
+
     @Override
     public void onBackPressed() {
         if (exit) {
@@ -310,9 +311,7 @@ cod=findViewById(R.id.cod);
                     }
                 }
             });
-        }
-
-         else {
+        } else {
             Toast.makeText(CheckOutScreen.this, "Press back again to exit", Toast.LENGTH_SHORT).show();
             exit = true;
             new Handler().postDelayed(new Runnable() {
@@ -324,4 +323,27 @@ cod=findViewById(R.id.cod);
         }
     }
 
+    private void getstock() {
+        DatabaseReference orderRef;
+        orderRef = FirebaseDatabase.getInstance().getReference().child("Orders")
+                .child(Prevalent.currentOnlineUsers.getPhone()).child("UserInfo");
+        orderRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String shippingstate = dataSnapshot.child("quantity").getValue().toString();
+
+                    String username = dataSnapshot.child("name").getValue().toString();
+                    if (shippingstate.equals("shipped")) {
+                    }
+                }
+            }
+
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+        }
+    });
+    }
 }
