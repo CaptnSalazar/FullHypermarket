@@ -91,7 +91,7 @@ RecyclerView.LayoutManager layoutManager;
 
         layoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        recyclerView.setLayoutManager(new GridLayoutManager(this,3));
     }
     @Override
     public void onBackPressed() {
