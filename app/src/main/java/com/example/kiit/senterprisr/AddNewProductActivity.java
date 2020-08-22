@@ -84,12 +84,7 @@ private DatabaseReference ProductRef,CategoryRef,TotalCategory;
 
         Spinner dynamicSpinner = (Spinner) findViewById(R.id.categories);
 
-        String[] items = new String[] { "Branded Top Article","Staples","Vegetable and fruit","Cleaning Material",
-                "Fast Food-Instant/Ready Food","Bathing Soap","Shaving Products","Disposable",
-                "Dental/Oral Care","Tea/Coffee","Farshan/Chiki/Mithai","Hair Care","Home Care", "Dairy & Bakery",
-                "HouseHold","Beverages","Cosmetics","Medicine","Insecticides","Talcum Powder","Choclate/Confectionery",
-                "Baby Products","Jam/Jelly/Ketchup/Syrup","Sanitary Napkins/Diapers","Chips/Upvas","Crockery",
-                "Kitchenware","Home Appliances"};
+        String[] items = new String[] { "Branded Top Article","Staples","Vegetable and fruit","Cleaning Material","Fast Food-Instant or Ready Food","Bathing Soap","Shaving Products","Disposable","Dental or Oral Care","Tea or Coffee","Farshan or Chiki or Mithai","Hair Care","Home Care", "Dairy & Bakery","HouseHold","Beverages","Cosmetics","Medicine","Insecticides","Talcum Powder","Choclate or Confectionery","Baby Products","Jam or Jelly or Ketchup or Syrup","Sanitary Napkins or Diapers","Chips or Upvas","Crockery","Kitchenware","Home Appliances"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, items);

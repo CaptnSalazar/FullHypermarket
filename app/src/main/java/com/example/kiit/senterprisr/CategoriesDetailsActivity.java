@@ -134,6 +134,7 @@ public class CategoriesDetailsActivity extends AppCompatActivity implements Navi
                             public void onClick(View v) {
                                 Intent intent=new Intent(CategoriesDetailsActivity.this,ProductDetailsActivity.class);
                                 intent.putExtra("name",model.getName());
+                                intent.putExtra("stock",model.getStock());
                                 startActivity(intent);
                             }
                         });
