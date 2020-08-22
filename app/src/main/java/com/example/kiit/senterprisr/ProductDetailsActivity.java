@@ -79,6 +79,7 @@ private TextView productPrice,productDescription,productName;
         savecurrenttime=currentDate.format(calfordate.getTime());
 
       final   DatabaseReference cartListRef= FirebaseDatabase.getInstance().getReference().child("Cart List");
+        final   DatabaseReference orderRef= FirebaseDatabase.getInstance().getReference().child("Orders");
 
         final HashMap<String,Object>cartMap=new HashMap<>();
         cartMap.put("pid",productId);
@@ -97,7 +98,7 @@ private TextView productPrice,productDescription,productName;
                     {
                         if(task.isSuccessful())
                         {
-                            cartListRef.child("Admin View").child(Prevalent.currentOnlineUsers.getPhone())
+                            orderRef.child(Prevalent.currentOnlineUsers.getPhone())
                                     .child("Products").child(productId)
                                     .updateChildren(cartMap)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -143,7 +144,7 @@ private TextView productPrice,productDescription,productName;
     {
         DatabaseReference orderRef;
         orderRef=FirebaseDatabase.getInstance().getReference().child("Orders")
-                .child(Prevalent.currentOnlineUsers.getPhone());
+                .child(Prevalent.currentOnlineUsers.getPhone()).child("UserInfo");
         orderRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -73,7 +75,7 @@ private String totalAmount="";
 
         final DatabaseReference OrderRef= FirebaseDatabase.getInstance().
                 getReference().child("Orders")
-                .child(Prevalent.currentOnlineUsers.getPhone());
+                .child(Prevalent.currentOnlineUsers.getPhone()).child("UserInfo");
         HashMap<String,Object> orderMAp=new HashMap<>();
         orderMAp.put("totalAmount",totalAmount);
         orderMAp.put("name",nameEditText.getText().toString());
@@ -96,6 +98,9 @@ private String totalAmount="";
                 }
             }
         });
+
+
+
 
     }
 }

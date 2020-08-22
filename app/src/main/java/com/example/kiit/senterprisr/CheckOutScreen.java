@@ -47,7 +47,7 @@ cod.setOnClickListener(new View.OnClickListener() {
     public void onClick(View v) {
         final DatabaseReference OrderRef= FirebaseDatabase.getInstance().
                 getReference().child("Orders")
-                .child(Prevalent.currentOnlineUsers.getPhone());
+                .child(Prevalent.currentOnlineUsers.getPhone()).child("UserInfo");
         HashMap<String,Object> order=new HashMap<>();
         order.put("State","shipped");
         OrderRef.updateChildren(order).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -61,6 +61,7 @@ cod.setOnClickListener(new View.OnClickListener() {
                 }
             }
         });
+
         FirebaseDatabase.getInstance().getReference().child("Cart List")
                 .child("User View")
                 .child(Prevalent.currentOnlineUsers.getPhone())
@@ -187,7 +188,7 @@ cod=findViewById(R.id.cod);
                 Log.d("UPI", "responseStr: "+approvalRefNo);
                 final DatabaseReference OrderRef= FirebaseDatabase.getInstance().
                         getReference().child("Orders")
-                        .child(Prevalent.currentOnlineUsers.getPhone());
+                        .child(Prevalent.currentOnlineUsers.getPhone()).child("UserInfo");
                 HashMap<String,Object> order=new HashMap<>();
                 order.put("State","shipped and paid");
                 OrderRef.updateChildren(order).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -223,7 +224,7 @@ cod=findViewById(R.id.cod);
 
                 final DatabaseReference OrderRef = FirebaseDatabase.getInstance().
                         getReference().child("Orders")
-                        .child(Prevalent.currentOnlineUsers.getPhone());
+                        .child(Prevalent.currentOnlineUsers.getPhone()).child("UserInfo");
                 HashMap<String, Object> order = new HashMap<>();
                 order.put("State", "");
                 OrderRef.updateChildren(order).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -242,7 +243,7 @@ cod=findViewById(R.id.cod);
                 Toast.makeText(CheckOutScreen.this, "Transaction failed.Please try again", Toast.LENGTH_SHORT).show();
                 final DatabaseReference OrderRef = FirebaseDatabase.getInstance().
                         getReference().child("Orders")
-                        .child(Prevalent.currentOnlineUsers.getPhone());
+                        .child(Prevalent.currentOnlineUsers.getPhone()).child("UserInfo");
                 HashMap<String, Object> order = new HashMap<>();
                 order.put("State", "");
                 OrderRef.updateChildren(order).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -261,7 +262,7 @@ cod=findViewById(R.id.cod);
             Toast.makeText(CheckOutScreen.this, "Internet connection is not available. Please check and try again", Toast.LENGTH_SHORT).show();
             final DatabaseReference OrderRef = FirebaseDatabase.getInstance().
                     getReference().child("Orders")
-                    .child(Prevalent.currentOnlineUsers.getPhone());
+                    .child(Prevalent.currentOnlineUsers.getPhone()).child("UserInfo");
             HashMap<String, Object> order = new HashMap<>();
             order.put("State", "");
             OrderRef.updateChildren(order).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -295,7 +296,7 @@ cod=findViewById(R.id.cod);
         if (exit) {
             final DatabaseReference OrderRef = FirebaseDatabase.getInstance().
                     getReference().child("Orders")
-                    .child(Prevalent.currentOnlineUsers.getPhone());
+                    .child(Prevalent.currentOnlineUsers.getPhone()).child("UserInfo");
             HashMap<String, Object> order = new HashMap<>();
             order.put("State", "");
             OrderRef.updateChildren(order).addOnCompleteListener(new OnCompleteListener<Void>() {

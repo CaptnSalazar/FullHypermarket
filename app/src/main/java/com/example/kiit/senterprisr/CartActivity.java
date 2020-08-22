@@ -155,7 +155,7 @@ private String totalamount="";
     {
         DatabaseReference orderRef;
         orderRef=FirebaseDatabase.getInstance().getReference().child("Orders")
-                .child(Prevalent.currentOnlineUsers.getPhone());
+                .child(Prevalent.currentOnlineUsers.getPhone()).child("UserInfo");
         orderRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

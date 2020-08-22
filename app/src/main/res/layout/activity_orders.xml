@@ -1,16 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#222831">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_menu"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    android:background="#222831"
+    app:cardElevation="15dp"
+    >
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColor="#FFFFFF"
-        android:scrollbars="vertical">
+        android:layout_height="80dp"
+        android:padding="10dp"
+        android:background="#FFF">
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="50dp"
+            android:layout_gravity="center"
+            android:layout_height="50dp"
+            android:background="#FFF"
+            android:scaleType="centerCrop"
+            android:src="@drawable/orders"
+            android:layout_marginTop="2dp"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Product Name:"
+                android:textColor="#222831"
+                android:textSize="14dp"
+                android:layout_marginLeft="80dp"
+                android:textStyle="bold"
+                android:gravity="right"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantity:"
 
-    </androidx.recyclerview.widget.RecyclerView>
-</RelativeLayout>
+                android:layout_marginLeft="80dp"
+                android:textColor="#222831"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:gravity="right"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Price:"
+
+                android:layout_marginLeft="80dp"
+                android:textColor="#222831"
+                android:textSize="14dp"
+                android:layout_below="@+id/cart_product_quantity"
+                android:textStyle="bold"
+                android:gravity="right"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/cart_product_name"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:text="Product Name"
+                android:textColor="#222831"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/cart_product_quantity"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:text="Product Quantity"
+                android:textColor="#222831"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/cart_product_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Product Price"
+                android:textColor="#222831"
+                android:textSize="14dp"
+                android:layout_below="@+id/cart_product_quantity"
+                android:textStyle="bold"
+                android:gravity="center"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -10,10 +10,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.kiit.senterprisr.model.Products;
@@ -33,7 +37,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 public class AddNewProductActivity extends AppCompatActivity {
-private String CategoryName,Description,Price,Pname,savecurrentdate,savecurrenttime;
+private String SellerName,CategoryName,Description,Price,Pname,savecurrentdate,savecurrenttime;
 private Button AddNewProduct;
 private EditText InputProductName,InputProductPrice,InputProductDescription;
 private ImageView InputProductImage;
@@ -41,7 +45,7 @@ private static final int GalleryPick=1;
 private Uri ImageUri;
 private String productrandomkey,downloadImageUrl;
 private StorageReference ProductImagesRef;
-private DatabaseReference ProductRef;
+private DatabaseReference ProductRef,CategoryRef,TotalCategory;
 
     private ProgressDialog lodingbar;
 
@@ -50,9 +54,11 @@ private DatabaseReference ProductRef;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_product);
-        CategoryName=getIntent().getExtras().get("category").toString();
+        SellerName=getIntent().getExtras().get("category").toString();
         ProductImagesRef= FirebaseStorage.getInstance().getReference().child("Product image");
         ProductRef=FirebaseDatabase.getInstance().getReference().child("Products");
+        CategoryRef=FirebaseDatabase.getInstance().getReference().child("Categories");
+        TotalCategory=FirebaseDatabase.getInstance().getReference().child("TotalCategory");
         lodingbar=new ProgressDialog(this);
 
         AddNewProduct=(Button)findViewById(R.id.add_new_product);
@@ -75,6 +81,29 @@ private DatabaseReference ProductRef;
             }
         });
 
+
+        Spinner dynamicSpinner = (Spinner) findViewById(R.id.categories);
+
+        String[] items = new String[] { "Home Care", "Dairy & Bakery", "HouseHold","Beverages","Cosmetics" };
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, items);
+
+        dynamicSpinner.setAdapter(adapter);
+
+        dynamicSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                Log.v("item", (String) parent.getItemAtPosition(position));
+                CategoryName=(String) parent.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+            }
+        });
     }
     private void OpenGallery(){
         Intent galleryIntent=new Intent();
@@ -106,6 +135,9 @@ private DatabaseReference ProductRef;
             StoreProductInformation();
         }
     }
+
+
+
 
     private void StoreProductInformation() {
         lodingbar.setTitle("Adding New Product");
@@ -163,6 +195,7 @@ private DatabaseReference ProductRef;
     {
         HashMap<String,Object> productMap=new HashMap<>();
         productMap.put("pid",productrandomkey);
+        productMap.put("seller",SellerName);
         productMap.put("date",savecurrentdate);
         productMap.put("time",savecurrenttime);
         productMap.put("description",Description);
@@ -171,6 +204,83 @@ private DatabaseReference ProductRef;
         productMap.put("price",Price);
         productMap.put("name",Pname);
         ProductRef.child(Pname).updateChildren(productMap)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful())
+                        {
+                            Intent intent = new Intent(AddNewProductActivity.this,AdminCategoryActivity.class);
+                            startActivity(intent);
+                            lodingbar.dismiss();
+                            Toast.makeText(AddNewProductActivity.this,"Product added suceesfully",Toast.LENGTH_SHORT).show();
+
+                        }
+                        else
+                        {
+                            lodingbar.dismiss();
+                            String message=task.getException().toString();
+
+                            Toast.makeText(AddNewProductActivity.this,"Error while uploading",Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
+        HashMap<String,Object> categoryM=new HashMap<>();
+        categoryM.put("category",CategoryName);
+        HashMap<String,Object> categoryMap=new HashMap<>();
+        categoryMap.put("pid",productrandomkey);
+        categoryMap.put("seller",SellerName);
+        categoryMap.put("date",savecurrentdate);
+        categoryMap.put("time",savecurrenttime);
+        categoryMap.put("description",Description);
+        categoryMap.put("image",downloadImageUrl);
+        categoryMap.put("category",CategoryName);
+        categoryMap.put("price",Price);
+        categoryMap.put("name",Pname);
+        TotalCategory.child(CategoryName).updateChildren(categoryMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful())
+                {
+                    Intent intent = new Intent(AddNewProductActivity.this,AdminCategoryActivity.class);
+                    startActivity(intent);
+                    lodingbar.dismiss();
+                    Toast.makeText(AddNewProductActivity.this,"Product added suceesfully",Toast.LENGTH_SHORT).show();
+
+                }
+                else
+                {
+                    lodingbar.dismiss();
+                    String message=task.getException().toString();
+
+                    Toast.makeText(AddNewProductActivity.this,"Error while uploading",Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+        TotalCategory.child(CategoryName).child(Pname).updateChildren(categoryMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful())
+                {
+                    Intent intent = new Intent(AddNewProductActivity.this,AdminCategoryActivity.class);
+                    startActivity(intent);
+                    lodingbar.dismiss();
+                    Toast.makeText(AddNewProductActivity.this,"Product added suceesfully",Toast.LENGTH_SHORT).show();
+
+                }
+                else
+                {
+                    lodingbar.dismiss();
+                    String message=task.getException().toString();
+
+                    Toast.makeText(AddNewProductActivity.this,"Error while uploading",Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+
+        CategoryRef.child(CategoryName).child(Pname).updateChildren(categoryMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

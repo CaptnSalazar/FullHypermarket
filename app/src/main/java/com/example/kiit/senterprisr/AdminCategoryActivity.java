@@ -9,15 +9,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class AdminCategoryActivity extends AppCompatActivity {
-    private ImageView suraj,raghav;
-private Button logoutBtn,CheckOrderBtn;
+    private ImageView suraj;
+private Button logoutBtn,Editorder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_category);
         logoutBtn=(Button)findViewById(R.id.adminlogout);
+        Editorder=(Button)findViewById(R.id.edit);
         suraj=(ImageView)findViewById(R.id.suraj);
-        raghav=(ImageView)findViewById(R.id.raghav);
 
 
         logoutBtn.setOnClickListener(new View.OnClickListener() {
@@ -30,20 +30,19 @@ private Button logoutBtn,CheckOrderBtn;
             }
         });
 
+        Editorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminCategoryActivity.this, EditProduct.class);
+                startActivity(intent);
+            }
+        });
 
         suraj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminCategoryActivity.this, AddNewProductActivity.class);
                 intent.putExtra("category", "suraj");
-                startActivity(intent);
-            }
-        });
-       raghav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AdminCategoryActivity.this, AddNewProductActivity.class);
-                intent.putExtra("category", "raghav");
                 startActivity(intent);
             }
         });

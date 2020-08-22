@@ -41,16 +41,16 @@ import java.util.Locale;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-private DatabaseReference ProductRef;
-private RecyclerView recyclerView;
-RecyclerView.LayoutManager layoutManager;
+public class EditProduct extends AppCompatActivity  {
+    private DatabaseReference ProductRef;
+    private RecyclerView recyclerView;
+    RecyclerView.LayoutManager layoutManager;
 
     private Boolean exit = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_edit_product);
         Paper.init(this);
 
         ProductRef= FirebaseDatabase.getInstance().getReference().child("Products");
@@ -60,32 +60,14 @@ RecyclerView.LayoutManager layoutManager;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Intent intent=new Intent(HomeActivity.this,CartActivity.class);
-               startActivity(intent);
+                Intent intent=new Intent(EditProduct.this,CartActivity.class);
+                startActivity(intent);
 
-                    }
+            }
         });
 
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Home");
-        setSupportActionBar(toolbar);
 
-        DrawerLayout  drawer = findViewById(R.id.drawer_layout);
-
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        View headerView= navigationView.getHeaderView(0);
-        TextView userNameTextView=headerView.findViewById(R.id.user_profile_name);
-        CircleImageView profileImageView=headerView.findViewById(R.id.profile_image);
-        userNameTextView.setText(Prevalent.currentOnlineUsers.getName());
-        Picasso.get().load(Prevalent.currentOnlineUsers.getImage()).into(profileImageView);
         recyclerView=findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
 
@@ -93,45 +75,26 @@ RecyclerView.LayoutManager layoutManager;
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
     }
-    @Override
-    public void onBackPressed() {
-        DrawerLayout  drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        }
-        else if (exit) {
-            finishAffinity();
 
-        } else {
-            Toast.makeText(HomeActivity.this, "Press back again to exit", Toast.LENGTH_SHORT).show();
-            exit = true;
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    exit = false;
-                }
-            }, 2000);
-        }
-    }
     @Override
     protected void onStart() {
         super.onStart();
         FirebaseRecyclerOptions<Products>options=
                 new FirebaseRecyclerOptions.Builder<Products>()
-                .setQuery(ProductRef,Products.class)
-                .build();
+                        .setQuery(ProductRef,Products.class)
+                        .build();
         FirebaseRecyclerAdapter<Products, ProductViewHolder>adapter=
                 new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
-                      holder.txtProductName.setText(model.getName());
+                        holder.txtProductName.setText(model.getName());
                         holder.txtProductPrice.setText("Rs."+model.getPrice());
                         Picasso.get().load(model.getImage()).fit().centerCrop().into(holder.imageView);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent=new Intent(HomeActivity.this,ProductDetailsActivity.class);
+                                Intent intent=new Intent(EditProduct.this,EditProductDetails.class);
                                 intent.putExtra("name",model.getName());
                                 startActivity(intent);
                             }
@@ -143,7 +106,7 @@ RecyclerView.LayoutManager layoutManager;
                     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.product_item_layout,parent,false);
                         ProductViewHolder holder=new ProductViewHolder(view);
-                                return holder;
+                        return holder;
                     }
                 };
 
@@ -153,54 +116,6 @@ RecyclerView.LayoutManager layoutManager;
 
 
 
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-      int id=item.getItemId();
-      if(id==R.id.nav_cart)
-      {
-          Intent intent=new Intent(HomeActivity.this,CartActivity.class);
-          startActivity(intent);
-
-      }
-      else  if(id==R.id.nav_categories)
-      {
-          Intent intent=new Intent(HomeActivity.this, Categories.class);
-          startActivity(intent);
-
-      }
-
-      else  if(id==R.id.nav_about)
-      {
-          Intent intent=new Intent(HomeActivity.this,About.class);
-          startActivity(intent);
-
-      }
-      else  if(id==R.id.nav_settings)
-      {
-Intent intent=new Intent(HomeActivity.this,SettingsActivity.class);
-        startActivity(intent);
-      }
-      else  if(id==R.id.nav_logout)
-      {
-Paper.book().destroy();
-Intent intent=new Intent(HomeActivity.this,MainActivity.class);
-intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-startActivity(intent);
-finish();
-      }
-
-
-
-        DrawerLayout  drawer = findViewById(R.id.drawer_layout);
-      drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home,menu);
-        return true;
-    }
 
 
 }

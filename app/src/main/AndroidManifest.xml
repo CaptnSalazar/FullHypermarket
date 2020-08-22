@@ -10,7 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".UserOrder"></activity>
+        <activity android:name=".EditProductDetails"></activity>
+        <activity android:name=".EditProduct" />
+        <activity android:name=".CategoriesDetailsActivity" />
+        <activity android:name=".Categories" />
+        <activity android:name=".UserOrder" />
         <activity android:name=".About" />
         <activity android:name=".newpassverify" />
         <activity android:name=".Orders" />

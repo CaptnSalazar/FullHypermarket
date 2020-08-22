@@ -68,11 +68,25 @@
         android:layout_marginRight="45dp"
         android:background="@drawable/input_design"
         />
+    <Spinner
+        android:id="@+id/categories"
+
+        android:textColorHint="@android:color/black"
+        android:hint="Category"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/productprice"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"/>
     <Button
         android:id="@+id/add_new_product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/productprice"
+        android:layout_below="@+id/categories"
         android:text="Add Product"
         android:background="@drawable/input_design"
         android:layout_marginLeft="45dp"
