@@ -82,6 +82,23 @@
         android:layout_below="@+id/productprice"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"/>
+    <EditText
+        android:id="@+id/productquantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/categories"
+        android:inputType="number"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:textSize="15sp"
+
+        android:textColorHint="@android:color/white"
+        android:textColor="@android:color/white"
+        android:hint="Quantity"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:background="@drawable/input_design"
+        />
     <Button
         android:id="@+id/add_new_product"
         android:layout_width="match_parent"

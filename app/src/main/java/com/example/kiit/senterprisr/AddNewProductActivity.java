@@ -37,9 +37,9 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 public class AddNewProductActivity extends AppCompatActivity {
-private String SellerName,CategoryName,Description,Price,Pname,savecurrentdate,savecurrenttime;
+private String SellerName,CategoryName,Description,Price,Pname,Stock,savecurrentdate,savecurrenttime;
 private Button AddNewProduct;
-private EditText InputProductName,InputProductPrice,InputProductDescription;
+private EditText InputProductName,InputProductPrice,InputProductDescription,InputProductQuantity;
 private ImageView InputProductImage;
 private static final int GalleryPick=1;
 private Uri ImageUri;
@@ -64,6 +64,7 @@ private DatabaseReference ProductRef,CategoryRef,TotalCategory;
         AddNewProduct=(Button)findViewById(R.id.add_new_product);
         InputProductImage=(ImageView)findViewById(R.id.select_product_image);
         InputProductName=(EditText)findViewById(R.id.productname);
+        InputProductQuantity=(EditText)findViewById(R.id.productquantity);
         InputProductDescription=(EditText)findViewById(R.id.productdescription);
         InputProductPrice=(EditText)findViewById(R.id.productprice);
 
@@ -84,7 +85,12 @@ private DatabaseReference ProductRef,CategoryRef,TotalCategory;
 
         Spinner dynamicSpinner = (Spinner) findViewById(R.id.categories);
 
-        String[] items = new String[] { "Home Care", "Dairy & Bakery", "HouseHold","Beverages","Cosmetics" };
+        String[] items = new String[] { "Branded Top Article","Staples","Vegetable and fruit","Cleaning Material",
+                "Fast Food-Instant/Ready Food","Bathing Soap","Shaving Products","Disposable",
+                "Dental/Oral Care","Tea/Coffee","Farshan/Chiki/Mithai","Hair Care","Home Care", "Dairy & Bakery",
+                "HouseHold","Beverages","Cosmetics","Medicine","Insecticides","Talcum Powder","Choclate/Confectionery",
+                "Baby Products","Jam/Jelly/Ketchup/Syrup","Sanitary Napkins/Diapers","Chips/Upvas","Crockery",
+                "Kitchenware","Home Appliances"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, items);
@@ -202,6 +208,7 @@ private DatabaseReference ProductRef,CategoryRef,TotalCategory;
         productMap.put("image",downloadImageUrl);
         productMap.put("category",CategoryName);
         productMap.put("price",Price);
+        productMap.put("stock",Stock);
         productMap.put("name",Pname);
         ProductRef.child(Pname).updateChildren(productMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -237,6 +244,7 @@ private DatabaseReference ProductRef,CategoryRef,TotalCategory;
         categoryMap.put("category",CategoryName);
         categoryMap.put("price",Price);
         categoryMap.put("name",Pname);
+        categoryMap.put("stock",Stock);
         TotalCategory.child(CategoryName).updateChildren(categoryMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
