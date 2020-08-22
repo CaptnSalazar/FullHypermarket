@@ -68,7 +68,6 @@ private DatabaseReference ProductRef,CategoryRef,TotalCategory;
         InputProductDescription=(EditText)findViewById(R.id.productdescription);
         InputProductPrice=(EditText)findViewById(R.id.productprice);
 
-
         InputProductImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,7 +131,8 @@ private DatabaseReference ProductRef,CategoryRef,TotalCategory;
         Description=InputProductDescription.getText().toString();
         Price=InputProductPrice.getText().toString();
         Pname=InputProductName.getText().toString();
-        if(ImageUri==null || TextUtils.isEmpty(Description)|| TextUtils.isEmpty(Pname) || TextUtils.isEmpty(Price))
+        Stock=InputProductQuantity.getText().toString();
+        if(ImageUri==null || TextUtils.isEmpty(Description)|| TextUtils.isEmpty(Pname) || TextUtils.isEmpty(Price)|| TextUtils.isEmpty(Stock))
         {
             Toast.makeText(this,"Fill every feild",Toast.LENGTH_SHORT).show();
         }

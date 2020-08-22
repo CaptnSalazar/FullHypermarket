@@ -133,6 +133,7 @@ RecyclerView.LayoutManager layoutManager;
                             public void onClick(View v) {
                                 Intent intent=new Intent(HomeActivity.this,ProductDetailsActivity.class);
                                 intent.putExtra("name",model.getName());
+                                intent.putExtra("stock",model.getStock());
                                 startActivity(intent);
                             }
                         });

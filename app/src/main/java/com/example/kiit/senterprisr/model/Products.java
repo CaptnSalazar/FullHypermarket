@@ -1,10 +1,31 @@
 package com.example.kiit.senterprisr.model;
 
 public class Products {
-    private String name,description,price,image,category;
+    private String name,description,price,image,category,stock;
     public Products()
     {
 
+    }
+
+    public Products(String name, String description, String price, String image, String category, String stock) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.image = image;
+        this.category = category;
+        this.stock = stock;
+    }
+
+    public String getStock() {
+        return stock;
+    }
+
+    public Products(String name) {
+        this.name = name;
+    }
+
+    public void setStock(String stock) {
+        this.stock = stock;
     }
 
     public Products(String name, String description, String price, String image, String category) {

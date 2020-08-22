@@ -32,13 +32,14 @@ public class ProductDetailsActivity extends AppCompatActivity {
 private Button addToCartBtn;
 public ImageView productImage;
 private ElegantNumberButton numberButton;
-private String productId="",state="normal";
+private String productId="",state="normal",stock="";
 private TextView productPrice,productDescription,productName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
         productId=getIntent().getStringExtra("name");
+        stock=getIntent().getStringExtra("stock");
         addToCartBtn=(Button)findViewById(R.id.add_to_cart_button);
         numberButton=(ElegantNumberButton)findViewById(R.id.number_btn);
         productImage=(ImageView)findViewById(R.id.product_image_details);
@@ -54,10 +55,15 @@ private TextView productPrice,productDescription,productName;
 
                 if(state.equals("Order Placed")||state.equals("Order Shipped"))
                 {
-                    Toast.makeText(ProductDetailsActivity.this,"You an place another order once your last ordered is confirmed",Toast.LENGTH_LONG).show();
+                    Toast.makeText(ProductDetailsActivity.this,"You can place another order once your last ordered is confirmed",Toast.LENGTH_LONG).show();
+                }
+                else if((Integer.parseInt(stock))<(Integer.parseInt(numberButton.getNumber())))
+                {
+                    Toast.makeText(ProductDetailsActivity.this,"Out of Stock",Toast.LENGTH_LONG).show();
                 }
                 else
                 {
+
                     addingToCartList();
                 }
             }
