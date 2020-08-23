@@ -5,24 +5,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#222831"
+    android:background="@color/bg_color"
     tools:context=".CheckOutScreen">
-
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
+    <ImageView
+        android:id="@+id/backbtn"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/backbtn"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/input_design"
-        android:fontFamily="serif"
-        android:gravity="center"
-        android:layout_margin="20dp"
-        android:inputType="number"
-        android:text="Payment"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:padding="4dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/titletxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/proximanovaregular"
+            android:gravity="center"
+            android:text="Payment Checkout"
+            android:textColor="#3c4b5d"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/desctxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/proximanovaregular"
+            android:gravity="center"
+            android:text="One Step to make it all yours!"
+            android:textColor="@color/darkgrey"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
 
 
     <TextView
@@ -36,54 +59,65 @@
         android:duplicateParentState="false"
         android:inputType="number"
         android:textSize="24sp" />
-<RelativeLayout
-    android:id="@+id/imageView3"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="200dp"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-    android:background="@drawable/buttons">
-    <ImageView
-
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_margin="20dp"
-        android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/pay" />
-</RelativeLayout>
 
     <LinearLayout
         android:id="@+id/al"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv"
+        android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="335dp"
-        android:layout_marginBottom="125dp"
-        android:orientation="horizontal">
+        android:layout_marginTop="149dp"
+        android:layout_marginBottom="228dp"
+        android:background="@drawable/circularbordersolid"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/send"
-            android:layout_width="160dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:layout_margin="20dp"
-            android:background="@drawable/buttons"
+            android:background="@drawable/circularbluebordersolid"
+            android:fontFamily="@font/proximanovaregular"
             android:text="Pay using upi"
-            android:textColor="@color/S_background" />
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/cod"
-            android:layout_width="160dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:layout_margin="20dp"
-            android:background="@drawable/buttons"
+            android:background="@drawable/circularbluebordersolid"
+            android:fontFamily="@font/proximanovaregular"
             android:text="Cash on Delivery"
-            android:textColor="@color/S_background" />
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/netbanking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:background="@drawable/circularbluebordersolid"
+            android:fontFamily="@font/proximanovaregular"
+            android:text="NetBanking"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/wallets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:background="@drawable/circularbluebordersolid"
+            android:fontFamily="@font/proximanovaregular"
+            android:text="Wallets"
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <TextView
@@ -95,7 +129,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:hint="UPI ID"
-        android:text="vandanamall98@okicici"
+        android:text="abcd1234@okbank"
         android:visibility="invisible" />
 
     <TextView
@@ -107,7 +141,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:hint="Name"
-        android:text="Suraj Enterprise"
+        android:text="HyperMarket"
         android:visibility="invisible" />
 
 </RelativeLayout>

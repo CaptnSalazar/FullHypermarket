@@ -1,144 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#222831"
-    tools:context=".ConfirmFinalOrder">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:scrollbars="none"
+    android:background="@color/bg_color">
 
-    <TextView
-        android:id="@+id/am"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:text="Total Amount"
-        android:textSize="40dp"
-        android:textColor="@android:color/white"
-        android:textAlignment="center"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:gravity="center"
-        android:textStyle="bold"
-        />
-    <LinearLayout
-        android:id="@+id/line"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/am"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal">
-    <TextView
-        android:id="@+id/rs"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="Rs."
-        android:textSize="50dp"
-        android:layout_marginLeft="120dp"
-        android:textColor="@android:color/white"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        />
-    <TextView
-        android:id="@+id/totalamt"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:text="Total"
-        android:textSize="50dp"
-        android:textColor="@android:color/white"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        />
-    </LinearLayout>
-    <TextView
-        android:id="@+id/txt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Please write your shipment Details"
-        android:textSize="18dp"
-        android:layout_below="@+id/line"
-        android:textColor="@android:color/white"
-        android:textAlignment="center"
-        android:layout_marginTop="45dp"
-        android:textStyle="bold"
-        />
-    <EditText
-        android:id="@+id/shipment_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/input_design"
-        android:layout_marginLeft="20dp"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/darker_gray"
-        android:layout_marginRight="20dp"
-        android:padding="10dp"
-        android:hint="Enter Your Name"
-        />
-    <EditText
-        android:id="@+id/shipment_phone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent">
 
-        android:background="@drawable/input_design"
-        android:layout_below="@+id/shipment_name"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:padding="10dp"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/darker_gray"
-        android:layout_marginRight="20dp"
+        <ImageView
+            android:id="@+id/backbtn"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/backbtn"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:padding="4dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"/>
 
-        android:inputType="number"
-        android:hint="Enter Your Phone Number"
-        />
-    <EditText
-        android:id="@+id/shipment_city"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/shipment_address"
-        android:padding="10dp"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/darker_gray"
-        android:layout_marginTop="10dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="24dp"
+            android:paddingTop="26dp"
+            android:paddingRight="24dp">
 
-        android:background="@drawable/input_design"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="City"
-        />
-    <EditText
-        android:id="@+id/shipment_address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/shipment_phone"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:padding="10dp"
-        android:background="@drawable/input_design"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/darker_gray"
-        android:layout_marginRight="20dp"
-        android:inputType="textImeMultiLine"
-        android:hint="Delivery Address"
-        />
-    <Button
-        android:id="@+id/confirm_final_btn"
-        android:layout_below="@+id/shipment_city"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:text="Procced to payment"
-        android:background="@drawable/buttons"
-        android:textColor="@android:color/black"
-        android:textSize="20dp"
-        />
 
-</RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/titletxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/proximanovaregular"
+                    android:gravity="center"
+                    android:text="Cart Checkout"
+                    android:textColor="#3c4b5d"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/desctxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/proximanovaregular"
+                    android:gravity="center"
+                    android:text="@string/signup_desc"
+                    android:textColor="@color/darkgrey"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/userinfo_tab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+
+                <LinearLayout
+                    android:id="@+id/namell"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/circularbordersolid"
+                    android:gravity="center"
+                    android:padding="18dp">
+
+                    <EditText
+                        android:id="@+id/shipment_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:fontFamily="@font/proximanovaregular"
+                        android:hint="Name"
+                        android:inputType="text"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/emailll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/circularbordersolid"
+                    android:gravity="center"
+                    android:padding="18dp">
+
+                    <EditText
+                        android:id="@+id/shipment_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:fontFamily="@font/proximanovaregular"
+                        android:hint="Shipping Address"
+                        android:inputType="text"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/passwordll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/circularbordersolid"
+                    android:gravity="center"
+                    android:padding="18dp">
+
+                    <EditText
+                        android:id="@+id/shipment_city"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:fontFamily="@font/proximanovaregular"
+                        android:hint="City"
+                        android:inputType="text"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/circularbordersolid"
+                    android:id="@+id/phonenumberll"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/indianflag"/>
+
+                    <TextView
+                        android:id="@+id/editTextCountryCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="4dp"
+                        android:textStyle="bold"
+                        android:text="+91"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/circularbordersolid"
+                        android:textSize="14sp" />
+
+
+                    <EditText
+                        android:id="@+id/shipment_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="PhoneNumber"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/circularbordersolid"
+                        android:inputType="phone" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/totalamt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:padding="10dp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/proximanovaregular"
+                    android:text="Total Payable Amount : Rs-"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/confirm_final_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/circularbluebordersolid"
+                    android:fontFamily="@font/proximanovaregular"
+                    android:padding="16dp"
+                    android:text="Confirm"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
 </ScrollView>

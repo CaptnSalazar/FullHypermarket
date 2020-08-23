@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#222831"
+    android:background="@color/bg_color"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
@@ -18,17 +18,27 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
+            <ImageView
+                android:id="@+id/backbtn"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/backbtn"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:padding="4dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:padding="10dp"
                 android:text="VERIFICATION"
+                android:fontFamily="@font/proximanovaregular"
                 android:textAlignment="center"
                 android:layout_centerHorizontal="true"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-                android:textColor="#FFFFFF" />
+                android:textColor="#3c4b5d" />
 
         </RelativeLayout>
 
@@ -55,43 +65,43 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="OTP has been sent to you on your mobile phone. Please enter it below"
+                android:text="@string/message"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 android:textColor="@android:color/darker_gray" />
 
             <LinearLayout
+                android:id="@+id/namell"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:layout_marginBottom="15dp"
-                android:orientation="horizontal">
+                android:layout_marginTop="20dp"
+                android:background="@drawable/circularbordersolid"
+                android:gravity="center"
+                android:padding="18dp">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:id="@+id/editTextCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@null"
                     android:gravity="center"
-                    android:hint="Code"
-                    android:textColorHint="#fff"
-                    android:inputType="phone"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-                    android:textColor="#fff">
-                    <requestFocus />
-                </com.google.android.material.textfield.TextInputEditText>
+                    android:fontFamily="@font/proximanovaregular"
+                    android:hint="OTP"
+                    android:inputType="number"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatButton
+            <Button
                 android:id="@+id/buttonSignIn"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:background="#fff"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="14dp"
+                android:background="@drawable/circularbluebordersolid"
+                android:fontFamily="@font/proximanovaregular"
+                android:padding="16dp"
                 android:text="VERIFY"
-                android:textColor="#222831" />
+                android:textColor="@color/white" />
 
             <ProgressBar
                 android:id="@+id/progressbar"

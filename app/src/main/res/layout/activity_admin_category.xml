@@ -1,97 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="#222831"
-    tools:context=".AdminCategoryActivity">
+    android:layout_gravity="center"
+    android:fitsSystemWindows="true"
+    android:background="@color/bg_color">
 
-    <TextView
-        android:id="@+id/slogan_category"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/backbtn"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/backbtn"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:padding="4dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="Add New Product"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="54dp" />
+        android:layout_alignParentStart="true"/>
 
     <LinearLayout
-        android:id="@+id/Linear_category_layout"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="10dp"
         android:gravity="center"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="160dp">
+        android:orientation="vertical"
+        android:padding="8dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:background="@drawable/input_design"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="24dp"
+            android:paddingTop="16dp"
+            android:paddingRight="24dp">
 
-            <ImageView
-                android:id="@+id/suraj"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
-                android:src="@drawable/ic_add_shopping_cart_black_24dp" />
-
-            <TextView
-
-                android:layout_width="167dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:inputType="textMultiLine"
-                android:padding="10dp"
-                android:text="Seller 1"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
 
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/proximanovaregular"
+                    android:gravity="center"
+                    android:text="Welcome,Admin"
+                    android:textStyle="bold"
+                    android:textColor="#3c4b5d"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/proximanovaregular"
+                    android:gravity="center"
+                    android:text="Hope you are having a great day.Please use the handy panel below."
+                    android:textColor="@color/darkgrey"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/namell"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/circularbordersolid"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:id="@+id/editTextCountryCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:textStyle="bold"
+                    android:text="Want to Add a new Product?"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/circularbordersolid"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/updatenew"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/circularbluebordersolid"
+                    android:fontFamily="@font/proximanovaregular"
+                    android:padding="16dp"
+                    android:text="Click here"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/circularbordersolid"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:textStyle="bold"
+                    android:text="Want to Edit an old Product?"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/circularbordersolid"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/circularbluebordersolid"
+                    android:fontFamily="@font/proximanovaregular"
+                    android:padding="16dp"
+                    android:text="Click here"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/circularbordersolid"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:textStyle="bold"
+                    android:text="Hope you had a great experience !"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/circularbordersolid"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="14dp"
+                    android:background="@drawable/circularbluebordersolid"
+                    android:fontFamily="@font/proximanovaregular"
+                    android:padding="16dp"
+                    android:text="Logout"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
-    </LinearLayout>
-    <Button
-        android:id="@+id/edit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/input_design"
-        android:text="Edit/Remove Product"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:textSize="20dp"
-        tools:layout_editor_absoluteX="-41dp"
-        tools:layout_editor_absoluteY="483dp" />
-    <Button
-        android:id="@+id/adminlogout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
-        android:background="@drawable/input_design"
-        android:text="Log Out"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:textSize="20dp"
-        tools:layout_editor_absoluteX="-41dp"
-        tools:layout_editor_absoluteY="483dp" />
 
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone" />
 </RelativeLayout>

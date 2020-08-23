@@ -3,79 +3,174 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#222831"
     android:layout_height="match_parent"
-    tools:context=".About">
-    <TextView
-        android:id="@+id/head"
+    android:layout_gravity="center"
+    android:background="@color/bg_color"
+    tools:context=".SettingsActivity">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_setting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:textColor="#FFFFFF"
-        android:text="Suraj Enterprise"
-        android:textSize="40dp"
-        android:textAlignment="center"
-        />
-    <TextView
-        android:layout_below="@+id/head"
+        android:background="@color/bg_color">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/titletxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/proximanovaregular"
+                    android:gravity="center"
+                    android:text="Contact Us"
+                    android:textColor="#3c4b5d"
+                    android:textSize="22sp" />
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+    <ImageView
+        android:id="@+id/backbtn"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/backbtn"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:padding="4dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"/>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textColor="#FFFFFF"
-        android:text="Address:"
-        android:textSize="20dp"
+        android:layout_height="537dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="94dp"
+        android:layout_marginBottom="98dp"
+        android:background="@drawable/circularbordersolid"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
 
-        />
-    <TextView
-        android:layout_below="@+id/head"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textColor="#FFFFFF"
-        android:text="Suraj Enterprise,Main road,Purulia,West Bengal,723103"
-        android:textSize="20dp"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/settings_profile_image"
+            android:layout_width="130dp"
+            android:layout_height="139dp"
+            android:layout_below="@+id/app_bar_setting"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/smartphone" />
 
-        />
-    <TextView
-        android:layout_below="@+id/head"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="220dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textColor="#FFFFFF"
-        android:text="Contact No.:"
-        android:textSize="20dp"
+        <TextView
+            android:id="@+id/profile_image_change_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/settings_profile_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:fontFamily="@font/proximanovaregular"
+            android:text="Mind's Eye HyperMarket"
+            android:textColor="#3c4b5d"
+            android:textSize="20sp" />
 
-        />
-    <TextView
-        android:layout_below="@+id/head"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="270dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textColor="#FFFFFF"
-        android:text="9434232331/9749219236/
-        03252-223106"
-        android:textSize="20dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/circularbordersolid"
+            android:gravity="center_vertical"
+            android:padding="15dp">
 
-        />
-    <TextView
-        android:layout_below="@+id/head"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="360dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textColor="#FFFFFF"
-        android:text="Opens at 10:00a.m. and closes at 7:00p.m."
-        android:textSize="20dp"
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/mail" />
 
-        />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/circularbordersolid"
+                android:text=" info@channelpro.ac.in"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/circularbordersolid"
+            android:gravity="center_vertical"
+            android:padding="15dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/indianflag" />
+
+
+            <TextView
+                android:id="@+id/register_phone_number_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/circularbordersolid"
+                android:text=" +91 8338057406"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/circularbordersolid"
+            android:gravity="center_vertical"
+            android:padding="15dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/orders" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/circularbordersolid"
+                android:text=" https://channelpromart.com/"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/circularbordersolid"
+            android:gravity="center_vertical"
+            android:padding="15dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/returnpolicy" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/circularbordersolid"
+                android:text=" Hypermart, ABC Square, Near  Khokhra street\n Khokhra, Ahemdabad"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
 </RelativeLayout>
