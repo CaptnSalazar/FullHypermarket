@@ -3,6 +3,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,8 +18,10 @@ import com.google.firebase.auth.FirebaseAuth;
 public class ForgotPassword extends AppCompatActivity {
 
     private Boolean exit = false;
-    TextInputEditText editTextCountryCode,editTextPhone,newpass;
-    AppCompatButton buttonContinue;
+    EditText editTextCountryCode,editTextPhone,newpass;
+    ImageView backbtn;
+    TextView linklogin;
+    Button buttonContinue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +29,28 @@ public class ForgotPassword extends AppCompatActivity {
         setContentView(R.layout.activity_forgot_password);
 
         editTextCountryCode = findViewById(R.id.editTextCountryCode);
-        editTextPhone = findViewById(R.id.editTextPhone);
-        buttonContinue = findViewById(R.id.buttonContinue);
-        newpass=findViewById(R.id.newpassword);
+        editTextPhone = findViewById(R.id.etphone);
+        buttonContinue = findViewById(R.id.btn_reset_password);
+        newpass=findViewById(R.id.etpass);
+
+        backbtn=findViewById(R.id.backbtn);
+        linklogin=findViewById(R.id.link_login);
+
+        linklogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ForgotPassword.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
 
         buttonContinue.setOnClickListener(new View.OnClickListener() {
             @Override

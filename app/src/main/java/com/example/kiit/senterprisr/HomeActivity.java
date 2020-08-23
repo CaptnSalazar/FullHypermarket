@@ -45,7 +45,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 private DatabaseReference ProductRef;
 private RecyclerView recyclerView;
 RecyclerView.LayoutManager layoutManager;
-
+CircleImageView profile;
     private Boolean exit = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +53,17 @@ RecyclerView.LayoutManager layoutManager;
         setContentView(R.layout.activity_home);
         Paper.init(this);
 
+        profile=findViewById(R.id.profile_image);
         ProductRef= FirebaseDatabase.getInstance().getReference().child("Products");
 
 
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(HomeActivity.this,SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,9 +165,10 @@ RecyclerView.LayoutManager layoutManager;
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
       int id=item.getItemId();
-      if(id==R.id.nav_cart)
+      if(id==R.id.nav_changepass)
       {
-          Intent intent=new Intent(HomeActivity.this,CartActivity.class);
+          //Intent intent=new Intent(HomeActivity.this,CartActivity.class);
+          Intent intent=new Intent(HomeActivity.this,ForgotPassword.class);
           startActivity(intent);
 
       }
@@ -176,18 +185,19 @@ RecyclerView.LayoutManager layoutManager;
           startActivity(intent);
 
       }
-      else  if(id==R.id.nav_settings)
+      else  if(id==R.id.nav_return)
       {
-Intent intent=new Intent(HomeActivity.this,SettingsActivity.class);
+        //Intent intent=new Intent(HomeActivity.this,SettingsActivity.class);
+          Intent intent=new Intent(HomeActivity.this,ReturnActivity.class);
         startActivity(intent);
       }
       else  if(id==R.id.nav_logout)
       {
-Paper.book().destroy();
-Intent intent=new Intent(HomeActivity.this,MainActivity.class);
-intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-startActivity(intent);
-finish();
+    Paper.book().destroy();
+    Intent intent=new Intent(HomeActivity.this,MainActivity.class);
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    startActivity(intent);
+    finish();
       }
 
 

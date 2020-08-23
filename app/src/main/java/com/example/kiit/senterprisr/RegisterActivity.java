@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,9 +30,10 @@ import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
 private Button createaccountbutton;
+ImageView backbtn;
 private EditText Inputname,Inputphonenumber,Inputpassword,email;
 private ProgressDialog lodingbar;
-private TextView countrycode;
+private TextView countrycode,tvlogin;
 
     private Boolean exit = false;
     @Override
@@ -44,7 +46,23 @@ private TextView countrycode;
         Inputpassword=(EditText) findViewById(R.id.register_password_input);
         countrycode=(TextView)findViewById(R.id.editTextCountryCode);
         email=(EditText)findViewById(R.id.register_email_input);
+        tvlogin=findViewById(R.id.tvlogin);
         lodingbar=new ProgressDialog(this);
+        backbtn=findViewById(R.id.backbtn);
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        tvlogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(RegisterActivity.this,LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         createaccountbutton.setOnClickListener(new View.OnClickListener() {
             @Override

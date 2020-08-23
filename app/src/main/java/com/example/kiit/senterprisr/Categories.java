@@ -148,9 +148,9 @@ public class Categories extends AppCompatActivity implements NavigationView.OnNa
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id=item.getItemId();
-        if(id==R.id.nav_cart)
+        if(id==R.id.nav_return)
         {
-            Intent intent=new Intent(Categories.this,CartActivity.class);
+            Intent intent=new Intent(Categories.this,ReturnActivity.class);
             startActivity(intent);
 
         }
@@ -167,9 +167,9 @@ public class Categories extends AppCompatActivity implements NavigationView.OnNa
             startActivity(intent);
 
         }
-        else  if(id==R.id.nav_settings)
+        else  if(id==R.id.nav_changepass)
         {
-            Intent intent=new Intent(Categories.this,SettingsActivity.class);
+            Intent intent=new Intent(Categories.this,ForgotPassword.class);
             startActivity(intent);
         }
         else  if(id==R.id.nav_logout)

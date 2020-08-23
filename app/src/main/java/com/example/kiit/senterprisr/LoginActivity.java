@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,8 +32,9 @@ private EditText InputNumber,Inputpassword;
 private Button loginbtn;
 private ProgressDialog lodingbar;
 private String parentdbname="Users";
-private CheckBox checkBoxRemeberME;
-private TextView AdminLink,NotAdminLink,forgotpassword;
+private android.widget.CheckBox checkBoxRemeberME;
+private TextView AdminLink,NotAdminLink,forgotpassword,linear,signup;
+ImageView backbtn;
 
     private Boolean exit = false;
     @Override
@@ -45,11 +47,30 @@ private TextView AdminLink,NotAdminLink,forgotpassword;
         lodingbar=new ProgressDialog(this);
         AdminLink=(TextView)findViewById(R.id.admin_panel_link);
         NotAdminLink=(TextView)findViewById(R.id.not_admin_panel_link);
+        linear=(TextView) findViewById(R.id.linearabc);
+        signup=findViewById(R.id.link_signup);
+        backbtn=findViewById(R.id.backbtn);
 
         forgotpassword=(TextView)findViewById(R.id.forgot_password_link);
 
-        checkBoxRemeberME=(com.rey.material.widget.CheckBox)findViewById(R.id.remember_me_chkb);
+        checkBoxRemeberME= (android.widget.CheckBox) findViewById(R.id.remember_me_chkb);
         Paper.init(this);
+
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getApplicationContext(),RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +83,7 @@ private TextView AdminLink,NotAdminLink,forgotpassword;
                loginbtn.setText("Login Admin");
                AdminLink.setVisibility(View.INVISIBLE);
                NotAdminLink.setVisibility(View.VISIBLE);
+                linear.setVisibility(View.INVISIBLE);
                parentdbname="Admins";
             }
         });
@@ -70,6 +92,7 @@ private TextView AdminLink,NotAdminLink,forgotpassword;
             public void onClick(View v) {
                 loginbtn.setText("Login");
                 AdminLink.setVisibility(View.VISIBLE);
+                linear.setVisibility(View.VISIBLE);
                 NotAdminLink.setVisibility(View.INVISIBLE);
                 parentdbname="Users";
             }

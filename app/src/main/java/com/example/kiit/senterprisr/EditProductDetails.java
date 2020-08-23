@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +38,8 @@ public class EditProductDetails extends AppCompatActivity {
 
     private CircleImageView profileImageView;
     private EditText fullNameEditText,userPhoneEditText,addressEditText;
-    private TextView profileChangeTextBtn,closeTextbtn,saveTextButton;
+    private TextView profileChangeTextBtn;
+    Button closeTextbtn,saveTextButton;
     private Uri ImageUri;
     private String myUri="";
     private StorageTask uploadTask;
@@ -57,8 +59,8 @@ public class EditProductDetails extends AppCompatActivity {
         userPhoneEditText=(EditText)findViewById(R.id.settings_phone_number);
         addressEditText=(EditText)findViewById(R.id.settings_address);
         profileChangeTextBtn=(TextView)findViewById(R.id.profile_image_change_btn);
-        closeTextbtn=(TextView)findViewById(R.id.close_settings_btn);
-        saveTextButton=(TextView)findViewById(R.id.update_account_settings_btn);
+        closeTextbtn=findViewById(R.id.remove);
+        saveTextButton=findViewById(R.id.update);
         userInfoDisplay(profileImageView,fullNameEditText,userPhoneEditText,addressEditText);
         fullNameEditText.setText(Prevalent.currentOnlineUsers.getName());
         Picasso.get().load(Prevalent.currentOnlineUsers.getImage()).into(profileImageView);

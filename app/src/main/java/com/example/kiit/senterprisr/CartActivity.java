@@ -38,7 +38,7 @@ private RecyclerView.LayoutManager layoutManager;
 private TextView txtmsg;
 private Button NextProcessBtn;
 private int overalTotalPrice=0;
-
+ImageView backbtn;
     private Boolean exit = false;
 private String totalamount="";
     @Override
@@ -52,6 +52,13 @@ private String totalamount="";
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         NextProcessBtn = (Button) findViewById(R.id.next_process_btn);
+        backbtn=findViewById(R.id.backbtn);
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
 
             NextProcessBtn.setOnClickListener(new View.OnClickListener() {

@@ -6,6 +6,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -33,11 +36,11 @@ public class VerificationCode extends AppCompatActivity {
 
     private String verificationId;
     private FirebaseAuth mAuth;
-
+    ImageView backbtn;
     private Boolean exit = false;
     ProgressBar progressBar;
-    TextInputEditText editText;
-    AppCompatButton buttonSignIn;
+    EditText editText;
+    Button buttonSignIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,13 @@ public class VerificationCode extends AppCompatActivity {
         progressBar = findViewById(R.id.progressbar);
         editText = findViewById(R.id.editTextCode);
         buttonSignIn = findViewById(R.id.buttonSignIn);
+        backbtn=findViewById(R.id.backbtn);
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         String phoneNumber = getIntent().getStringExtra("phoneNumber");
         sendVerificationCode(phoneNumber);

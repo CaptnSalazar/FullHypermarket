@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +38,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CheckOutScreen extends AppCompatActivity {
-
+    ImageView backbtn;
     TextView amountEt, nameEt, upiIdEt;
     Button send, cod;
     private Boolean exit = false;
@@ -48,6 +49,13 @@ public class CheckOutScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_out_screen);
 
+        backbtn=findViewById(R.id.backbtn);
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         initializeViews();
         cod.setOnClickListener(new View.OnClickListener() {
             @Override

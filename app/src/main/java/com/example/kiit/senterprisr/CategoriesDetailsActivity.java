@@ -158,9 +158,9 @@ public class CategoriesDetailsActivity extends AppCompatActivity implements Navi
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id=item.getItemId();
-        if(id==R.id.nav_cart)
+        if(id==R.id.nav_return)
         {
-            Intent intent=new Intent(CategoriesDetailsActivity.this,CartActivity.class);
+            Intent intent=new Intent(CategoriesDetailsActivity.this,ReturnActivity.class);
             startActivity(intent);
 
         }
@@ -184,9 +184,9 @@ public class CategoriesDetailsActivity extends AppCompatActivity implements Navi
             startActivity(intent);
 
         }
-        else  if(id==R.id.nav_settings)
+        else  if(id==R.id.nav_changepass)
         {
-            Intent intent=new Intent(CategoriesDetailsActivity.this,SettingsActivity.class);
+            Intent intent=new Intent(CategoriesDetailsActivity.this,ForgotPassword.class);
             startActivity(intent);
         }
         else  if(id==R.id.nav_logout)

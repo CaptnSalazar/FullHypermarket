@@ -46,7 +46,7 @@ private Uri ImageUri;
 private String productrandomkey,downloadImageUrl;
 private StorageReference ProductImagesRef;
 private DatabaseReference ProductRef,CategoryRef,TotalCategory;
-
+ImageView backbtn;
     private ProgressDialog lodingbar;
 
 
@@ -67,7 +67,14 @@ private DatabaseReference ProductRef,CategoryRef,TotalCategory;
         InputProductQuantity=(EditText)findViewById(R.id.productquantity);
         InputProductDescription=(EditText)findViewById(R.id.productdescription);
         InputProductPrice=(EditText)findViewById(R.id.productprice);
-
+        backbtn=findViewById(R.id.backbtn);
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddNewProductActivity.this,AdminCategoryActivity.class);
+                startActivity(intent);
+            }
+        });
         InputProductImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
